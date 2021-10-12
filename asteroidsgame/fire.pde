@@ -13,18 +13,18 @@ class Fire extends GameObject {
   location = myShip.location.copy();
   nudge = myShip.direction.copy();
   nudge.rotate(PI);
+  nudge.setMag(20);
   location.add(nudge);
-  nudge.setMag(10);
   velocity = myShip.direction.copy(); 
   velocity.rotate(PI+random(-0.5, 0.5)); //180 degree
-  velocity.setMag(3);
+  velocity.setMag(5);
     
     
   }
   
   void act() {
     super.act();
-    t = t - 5;
+    t = t - 10;
     if (t <= 0) lives = 0;
     
     

@@ -10,7 +10,7 @@ void intro() {
   textSize(80);
   textAlign(CENTER, CENTER);
   textFont(asteroids);
-  fill(255);
+  fill(#6EFF31);
   text("ASTEROIDS", 400, 200);
   
   //start button

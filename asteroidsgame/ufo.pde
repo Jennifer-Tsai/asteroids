@@ -1,0 +1,6 @@
+class UFO extends GameObject {
+  
+  
+  
+  
+}

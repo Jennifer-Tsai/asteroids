@@ -10,7 +10,7 @@ final int PAUSE = 3;
 final int GAMEOVER = 4;
 
 //keys
-boolean upkey, downkey, leftkey, rightkey, spacekey;
+boolean upkey, downkey, leftkey, rightkey, spacekey, tkey;
 
 //ship
 Ship myShip;
@@ -29,7 +29,7 @@ PFont asteroids;
 void setup() {
  size(800, 600);
  //imageMode(CENTER);
- mode = INTRO;
+ mode = GAME;
 
  
  //ship
@@ -56,7 +56,6 @@ void setup() {
 }
 
 void draw() {
- background(0); 
 
   //mode framework 
   if (mode == INTRO) {
@@ -82,6 +81,7 @@ void keyPressed() {
  if (keyCode == LEFT)  leftkey = true; 
  if (keyCode == RIGHT)  rightkey = true;
  if (key == ' ')  spacekey = true;
+ if (key == 't' || key == 'T') tkey = true;
 }
 
 void keyReleased() {
@@ -90,6 +90,7 @@ void keyReleased() {
   if (keyCode == LEFT)  leftkey = false;
   if (keyCode == RIGHT)  rightkey = false;
   if (key == ' ')  spacekey = false;
+  if (key == 't' || key == 'T') tkey = false; 
 }
 
 void mouseReleased() {
@@ -111,4 +112,10 @@ void rectTactile(int x, int y, int w , int h) {
   fill(100);
   }
   
+}
+
+void resetCircle() {
+  //for pause button
+  fill(60);
+  circle(100, 100, 100);
 }
