@@ -19,7 +19,7 @@ class Ship extends GameObject {
   }
 
   //behaviour functions
-  void show() {
+    void show() {
     pushMatrix();
     translate(location.x, location.y);
     rotate(direction.heading());
@@ -56,7 +56,6 @@ class Ship extends GameObject {
     if (velocity.mag() > 2)
       velocity.setMag(2);
 
-
     shotTimer++;
 
     //immunity 
@@ -75,7 +74,6 @@ class Ship extends GameObject {
       //}
      
     
-  
 
     //teleport
     if (tkey && teleport >= 400) {

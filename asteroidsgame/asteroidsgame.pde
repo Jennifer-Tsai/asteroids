@@ -18,6 +18,7 @@ Ship myShip;
 //bullets
 ArrayList<GameObject> myObjects;
 
+
 //gifs
 PImage [] gif;
 int frame;
@@ -27,9 +28,9 @@ int f;
 PFont asteroids;
 
 void setup() {
- size(800, 600);
+ size(800, 600, FX2D);
  //imageMode(CENTER);
- mode = GAME;
+ mode = INTRO;
 
  
  //ship
@@ -43,11 +44,11 @@ void setup() {
  myObjects.add(new Asteroid());
  
  //gif
- frame = 47;
+ frame = 35;
  gif = new PImage[frame];
  int g = 0;
  while (g < frame) {
-   gif [g] = loadImage("frame_"+g+"_delay-0.1s.gif");
+   gif [g] = loadImage("frame_"+g+"_delay-0.06s.gif");
    g = g+1;
  }
  
