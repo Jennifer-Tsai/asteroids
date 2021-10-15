@@ -14,39 +14,36 @@ class Ship extends GameObject {
     direction = new PVector(0, -0.1);
     shotTimer = 0;
     threshold = 60;
-    immunity = 1000;
+    immunity = 300;
     teleport = 100;
+    size = 50;
   }
 
   //behaviour functions
-    void show() {
+  void show() {
     pushMatrix();
     translate(location.x, location.y);
     rotate(direction.heading());
     noFill();
     strokeWeight(4);
     stroke(#39FF14);
+     if (immunity > 0) {
+      immunity--;
+      fill(#EAE3E3);
+      strokeWeight(4);
+      stroke(255);  
+    } 
     triangle(-25, -12.5, -25, 12.5, 25, 0);
-
     popMatrix();
-
-    //rectangle timer 
-    rectMode(CORNER);
-    fill(#0DFFF1);
-    noStroke();
-    rect(400, 10, 400, 30);
-
-    fill(#0D16FF);
-    rect(400, 10 , teleport, 30);
 
     teleport = teleport + 2;
 
     if (teleport >= 400) {
-    fill(#F70CD9);
-    noStroke();
-    rect(400, 10, 400, 30);
-      
-    teleport = teleport + 2;
+      fill(#F70CD9);
+      noStroke();
+      rect(400, 10, 400, 30);
+
+      teleport = teleport + 2;
     }
   }
 
@@ -58,40 +55,44 @@ class Ship extends GameObject {
 
     shotTimer++;
 
+
+
+
+    println(lives, immunity);
+
+    // immunity 
+    int i = 0;
+    while (i < myObjects.size()) {
+      GameObject obj = myObjects.get(i);
+      if (immunity <= 0) {
+        if (obj instanceof Asteroid) {
+          if (dist(location.x, location.y, obj.location.x, obj.location.y) < 35 + obj.size/2) {
+            lives = lives - 1;
+            immunity = 300;
+          
+          }
+        }
+      }
+      i++;
+    }
+
+    if (lives == 0) {
+      mode = GAMEOVER;
+    }
+
     //immunity 
-    //int i = 0;
-    //while (i < myObjects.size()) {
-    //  GameObject obj = myObjects.get(i);
-    //  if (immunity <= 0) {
-      //  if (obj instanceof Asteroid) {
-      //    if (dist(location.x, location.y, obj.location.x, obj.location.y) < 35 + obj.size/2) {
-      //      lives = lives - 1;
-      //      immunity = 1000;
-      //    }
-      //  }
-      // i++;
-      //if (immunity >= 0) immunity--;
-      //}
-     
-    
+    fill(255);
+    strokeWeight(3);
+    textSize(30);
+    text("Immunity" + immunity, 120, 550);
+
 
     //teleport
     if (tkey && teleport >= 400) {
       teleport = 0;
       location.x = random(0, width);
-      location.y = random(0,height);
+      location.y = random(0, height);
     }
-
-      //int i = 0;
-      //GameObject obj = myObjects.get(i);
-      //while (dist(location.x, location.y, obj.location.x, obj.location.y) < obj.size/2 + size/2) {
-      //  location.x = random(width);
-      //  location.y = random(height);
-      //}
-    
-
-
-
 
     //moving using keys
     if (upkey) {
@@ -106,6 +107,5 @@ class Ship extends GameObject {
       myObjects.add(new Bullet());
       shotTimer = 0;
     }
-  
-  } 
   }
+}

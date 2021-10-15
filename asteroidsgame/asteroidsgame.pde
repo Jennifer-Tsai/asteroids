@@ -18,7 +18,6 @@ Ship myShip;
 //bullets
 ArrayList<GameObject> myObjects;
 
-
 //gifs
 PImage [] gif;
 int frame;
@@ -27,12 +26,17 @@ int f;
 //fonts
 PFont asteroids;
 
+//teleport
+int teleport = 100;
+
+//score
+int score;
+
 void setup() {
  size(800, 600, FX2D);
  //imageMode(CENTER);
  mode = INTRO;
 
- 
  //ship
  myShip = new Ship();
  
@@ -42,6 +46,7 @@ void setup() {
  myObjects.add(new Asteroid());
  myObjects.add(new Asteroid());
  myObjects.add(new Asteroid());
+ myObjects.add(new UFO());
  
  //gif
  frame = 35;
@@ -54,6 +59,9 @@ void setup() {
  
  //font
  asteroids = createFont("Asteroid 7337.otf", 80);
+ 
+ //score
+ score = 0;
 }
 
 void draw() {

@@ -24,12 +24,16 @@ class Asteroid extends GameObject {
     noFill();
     stroke(#1977F7);
     ellipse(location.x, location.y, size, size);
+    
+  
   }
 
 
   void act() {
     super.act();
-
+   
+    
+    
     int i = 0;
     while (i <myObjects.size()) {
       GameObject myObj = myObjects.get(i); 
@@ -38,13 +42,12 @@ class Asteroid extends GameObject {
           myObj.lives = 0;
           lives = 0;
           //myObjects.add(new Particles(this.location));
-          if (size >= 200) {
+          if (size >= 50) {
             myObjects.add(new Asteroid(size/2, location.x, location.y));
             myObjects.add(new Asteroid(size/2, location.x, location.y));
+            score = score + 1;
           } else {
             lives = 0;
-            myObjects.add(new Asteroid(size/2, location.x, location.y));
-            myObjects.add(new Asteroid(size/2, location.x, location.y));
             myObjects.add(new Particles(location.x, location.y));
             myObjects.add(new Particles(location.x, location.y));
             myObjects.add(new Particles(location.x, location.y));
@@ -71,4 +74,9 @@ class Asteroid extends GameObject {
       i++;
     }
   }
-}
+  
+  
+  
+  
+
+}  
